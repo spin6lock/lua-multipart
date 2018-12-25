@@ -27,6 +27,14 @@ local body = multipart_data:tostring()
 
 -- Get all the parameters in a Lua table, in the form of {param_name = param_value}
 local t = multipart_data:get_all()
+
+-- Get boundary to add to Content-Type
+local boundary = multipart_data:get_boundary()
+
+-- Add file field, this method will automatically add additional part header like:
+-- Content-Disposition: form-data; name="hello"; filename="run.sh"
+-- Content-Type: application/octet-stream
+multipart_data:set_file("hello", "run.sh", "world")
 ```
 
 # Contribute
